@@ -15,6 +15,12 @@ export const Owner = styled.header`
   flex-direction: column;
   align-items: center;
 
+  a {
+    color: #7159c1;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
   img {
     width: 120px;
     border-radius: 50%;
@@ -36,7 +42,7 @@ export const Owner = styled.header`
   }
 `;
 
-export const IssuesList = styled.ul`
+export const IssueList = styled.ul`
   padding-top: 30px;
   margin-top: 30px;
   border-top: 1px solid #eee;

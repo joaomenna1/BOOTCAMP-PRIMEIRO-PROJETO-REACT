@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import api from '../../services/api';
 import Container from '../../components/Container';
-import { Loading, Owner, IssuesList } from './styles';
+import { Loading, Owner, IssueList } from './styles';
 
 export default class Repository extends Component {
   static propTypes = {
@@ -38,7 +38,7 @@ export default class Repository extends Component {
     ]);
 
     this.setState({
-      repository: repository.date,
+      repository: repository.data,
       issues: issues.data,
       loading: false,
     });
@@ -53,21 +53,21 @@ export default class Repository extends Component {
 
     return (
       <Container>
+        <Link to="/">Voltar aos repositorios</Link>
         <Owner>
-          <Link to="/">Voltar aos repositorios</Link>
-          <img scr={repository.owner.avatar_url} alt={repository.owner.login} />
+          <img src={repository.owner.avatar_url} alt={repository.owner.login} />
           <h1>{repository.name}</h1>
           <p>{repository.description}</p>
         </Owner>
 
-        <IssuesList>
+        <IssueList>
           {issues.map(issue => (
             <li key={String(issue.id)}>
               <img src={issue.user.avatar_url} alt={issue.user.login} />
               <div>
                 <strong>
                   <a href={issue.html_url}>{issue.title}</a>
-                  {issue.lablels.map(label => (
+                  {issue.labels.map(label => (
                     <span key={String(label.id)}>{label.name}</span>
                   ))}
                 </strong>
@@ -75,7 +75,7 @@ export default class Repository extends Component {
               </div>
             </li>
           ))}
-        </IssuesList>
+        </IssueList>
       </Container>
     );
   }
